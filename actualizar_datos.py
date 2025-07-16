@@ -18,9 +18,9 @@ def obtener_datos_api(id_variable, desde):
     if not data:
         return pd.DataFrame()
     df = pd.DataFrame(data)
-    df["Fecha"] = pd.to_datetime(df["fecha"])
-    df["Valor"] = df["valor"]
-    return df[["Fecha", "Valor"]]
+    df["fecha"] = pd.to_datetime(df["fecha"])
+    df["valor"] = df["valor"]
+    return df[["fecha", "valor"]]
 
 def actualizar_dataset(nombre_archivo_historico, id_variable, nombre_salida):
     df_hist = cargar_historico(nombre_archivo_historico)
