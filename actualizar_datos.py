@@ -3,7 +3,7 @@ import requests
 import os
 
 def cargar_historico(nombre_archivo):
-    df = pd.read_csv(nombre_archivo, parse_dates=["Fecha"])
+    df = pd.read_csv(nombre_archivo, parse_dates=["fecha"])
     return df
 
 def obtener_datos_api(id_variable, desde):
