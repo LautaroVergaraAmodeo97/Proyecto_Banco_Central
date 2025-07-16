@@ -4,9 +4,21 @@ import io
 import os
 
 def cargar_csv(nombre_archivo):
-    path = os.path.join("data", nombre_archivo)
-    df = pd.read_csv(path, parse_dates=["fecha"])
-    return df
+    try:
+        path = os.path.join("data", nombre_archivo)
+        df = pd.read_csv(path)
+        df.columns = df.columns.str.lower()
+
+        if "fecha" not in df.columns or "valor" not in df.columns:
+            raise ValueError(f"El archivo '{nombre_archivo}' debe tener columnas 'fecha' y 'valor'")
+
+        df["fecha"] = pd.to_datetime(df["fecha"])
+        return df
+
+    except FileNotFoundError:
+        raise FileNotFoundError(f"No se encontró el archivo '{nombre_archivo}' en la carpeta 'data/'")
+    except Exception as e:
+        raise RuntimeError(f"Error al cargar '{nombre_archivo}': {e}")
 
 def generar_grafico(df, anio_ini, mes_ini, anio_fin, mes_fin, titulo, ylabel):
     fecha_inicio = pd.to_datetime(f"{anio_ini}-{mes_ini:02d}-01")
