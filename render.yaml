@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: api-bcra
+    env: python
+    plan: free
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "uvicorn main:app --host=0.0.0.0 --port=10000"
+    autoDeploy: true
+
+cron:
+  - name: actualizar-datos
+    schedule: "0 8 * * *"  # Todos los días a las 8:00 UTC
+    command: "python actualizar_datos.py"
