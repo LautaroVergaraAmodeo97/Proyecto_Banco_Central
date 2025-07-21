@@ -16,7 +16,7 @@ def home():
 
 @app.get("/reservas")
 def mostrar_reservas(
-    anio_inicio: int = Query(2021), mes_inicio: int = Query(1),
+    anio_inicio: int = Query(2022), mes_inicio: int = Query(1),
     anio_final: int = Query(2024), mes_final: int = Query(12)
 ):
     imagen = generar_grafico_reservas(anio_inicio, mes_inicio, anio_final, mes_final)
@@ -24,7 +24,7 @@ def mostrar_reservas(
 
 @app.get("/minorista")
 def mostrar_minorista(
-    anio_inicio: int = Query(2021), mes_inicio: int = Query(1),
+    anio_inicio: int = Query(2022), mes_inicio: int = Query(1),
     anio_final: int = Query(2024), mes_final: int = Query(12)
 ):
     imagen = generar_grafico_minorista(anio_inicio, mes_inicio, anio_final, mes_final)
@@ -32,7 +32,7 @@ def mostrar_minorista(
 
 @app.get("/mayorista")
 def mostrar_mayorista(
-    anio_inicio: int = Query(2021), mes_inicio: int = Query(1),
+    anio_inicio: int = Query(2022), mes_inicio: int = Query(1),
     anio_final: int = Query(2024), mes_final: int = Query(12)
 ):
     imagen = generar_grafico_mayorista(anio_inicio, mes_inicio, anio_final, mes_final)
@@ -40,8 +40,9 @@ def mostrar_mayorista(
 
 @app.get("/tasa-politica")
 def mostrar_tasa_politica(
-    anio_inicio: int = Query(2021), mes_inicio: int = Query(1),
+    anio_inicio: int = Query(2022), mes_inicio: int = Query(1),
     anio_final: int = Query(2024), mes_final: int = Query(12)
 ):
     imagen = generar_grafico_tasa_politica(anio_inicio, mes_inicio, anio_final, mes_final)
     return StreamingResponse(io.BytesIO(imagen.getvalue()), media_type="image/png")
+
